@@ -4,5 +4,12 @@
     "express": "^5.1.0",
     "mongoose": "^8.14.0",
     "nodemon": "^3.1.10"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "seed": "node seed/seed.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
