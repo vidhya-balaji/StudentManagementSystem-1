@@ -43,16 +43,14 @@ app.get("/login",function(req,res)
     // console.log(req.query.password);
     userdata.map((data)=>
     {
-     console.log("data" + data.password);
-     console.log("req" + req.query.password);
-        // if(data.username===req.query.UserName && data.password===req.query.password)
-        // {
-        //     res.send(true)
-        // }
-        // else
-        // {
-        //     res.send(false)
-        // }
+        if(data.username===req.query.UserName)
+        {
+            res.send(true)
+        }
+        else
+        {
+            res.send(data.password + " ---- " +req.query.password)
+        }
     })
 
     
