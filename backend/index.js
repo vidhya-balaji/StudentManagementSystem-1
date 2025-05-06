@@ -49,7 +49,7 @@ app.get("/login",function(req,res)
         }
         else
         {
-            res.send(req.query)
+            res.send(userdata)
         }
     })
 
