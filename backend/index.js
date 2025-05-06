@@ -47,10 +47,10 @@ app.get("/login",function(req,res)
         {
             res.send(data.password + " ---- " +req.query.password)
         }
-        else
-        {
-            res.send(data.password + " ---- " +req.query.password)
-        }
+        // else
+        // {
+        //     res.send(data.password + " ---- " +req.query.password)
+        // }
     })
 
     
