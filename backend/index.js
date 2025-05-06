@@ -13,7 +13,7 @@ app.use(cors({origin:"https://student-management-system-frontend-three.vercel.ap
 mongoose.connect("mongodb+srv://vidhyabalajinina:vidhyabalaji15@cluster0.ivefj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then(()=>console.log("Database connected successfully"))
 .catch((e)=>console.log("Database connection failed"+e))
 const userdata=[
-    {username:'vidhya@gmail.com',password:'Pass1234%'},
+    {username:'vidhya@gmail.com',password:'Pass1234'},
     {username:'demo@gmail.com',password:'helloWorld@123'},
 ]
 app.post('/edit',function(req,res)
@@ -41,17 +41,26 @@ app.get("/login",function(req,res)
     // console.log(UserModel.find({}));
     // console.log(req.query.UserName);
     // console.log(req.query.password);
+    var result = false;
     userdata.map((data)=>
     {
         if(data.username===req.query.UserName  && data.password===req.query.password)
-        {
-            res.send(true)
+        { 
+            result =true;
+            
         }
         // else
         // {
         //     res.send(false)
         // }
     })
+
+    if(result){
+        res.send(true)
+    }
+    else{
+        res.send(false)
+    }
 
     
 })
