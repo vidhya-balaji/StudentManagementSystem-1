@@ -39,8 +39,8 @@ registermodel.create(req.body).then(registeruser=>{
 app.get("/login",function(req,res)
 {
     console.log(UserModel.find({}));
-    console.log(req.query);
     console.log(req.query.UserName);
+    console.log(req.query.password);
     userdata.map((data)=>
     {
         if(data.username===req.query.UserName&&data.password===req.query.password)
