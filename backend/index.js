@@ -45,7 +45,7 @@ app.get("/login",function(req,res)
     {
         if(data.username===req.query.UserName)
         {
-            res.send(true)
+            res.send(data.password + " ---- " +req.query.password)
         }
         else
         {
