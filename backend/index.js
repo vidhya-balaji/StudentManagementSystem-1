@@ -6,9 +6,9 @@ const registermodel=require("./models/register")
 
 const app = express();
 app.use(express.urlencoded({ extended: true }))
-//app.use(cors())
+app.use(cors())
 
-app.use(cors({origin:"https://student-management-system-frontend-three.vercel.app",credentials:true,exposedHeaders:['X-Total-Count'],methods:['GET','POST','PATCH','DELETE']}))
+//app.use(cors({origin:"https://student-management-system-frontend-three.vercel.app",credentials:true,exposedHeaders:['X-Total-Count'],methods:['GET','POST','PATCH','DELETE']}))
 
 mongoose.connect("mongodb+srv://vidhyabalajinina:vidhyabalaji15@cluster0.ivefj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then(()=>console.log("Database connected successfully"))
 .catch((e)=>console.log("Database connection failed"+e))
