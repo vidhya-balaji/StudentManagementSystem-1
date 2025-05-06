@@ -43,8 +43,8 @@ app.get("/login",function(req,res)
     // console.log(req.query.password);
     userdata.map((data)=>
     {
-     console.log(data.password);
-     console.log(req.query.password);
+     console.log("data" + data.password);
+     console.log("req" + req.query.password);
         if(data.username===req.query.UserName && data.password===req.query.password)
         {
             res.send(true)
