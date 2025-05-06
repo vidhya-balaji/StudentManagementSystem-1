@@ -12,7 +12,7 @@ function StudentList(props) {
   const [openPopUp, setOpenPopUp] = useState(false);
   function handleEdit(editRegNo) {
     console.log(editRegNo);
-    axios.post("http://localhost:5000/edit", { editRegNo }).then((res) => {
+    axios.post("https://student-management-system-backend-nu.vercel.app/edit", { editRegNo }).then((res) => {
       console.log(res.data);
       if (res.data === true) {
         listOfStudents.map(students => {

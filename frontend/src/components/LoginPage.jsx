@@ -17,7 +17,7 @@ function LoginPage() {
     const login = () => {
         console.log(Username)
         console.log(Password)
-        const apicall = axios.get(`http://localhost:5000/login?UserName=${Username}&password=${Password}`)
+        const apicall = axios.get(`https://student-management-system-backend-nu.vercel.app/login?UserName=${Username}&password=${Password}`)
         apicall.then( (data)=> {
             if(data.data===true)
             {
