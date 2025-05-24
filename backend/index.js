@@ -7,7 +7,8 @@ const studentModel = require("./models/studentlist")
 require('dotenv').config()
 const app = express();
 app.use(express.urlencoded({ extended: true }))
-app.use(cors())
+//app.use(cors())
+app.use(cors({origin:process.env.ORIGIN,credentials:true,exposedHeaders:['X-Total-Count'],methods:['GET','POST','PATCH','DELETE']}))
 app.use(express.json());
 mongoose.connect(process.env.DBConnectionString).then(() => console.log("Database connected successfully"))
     .catch((e) => console.log("Database connection failed" + e))
