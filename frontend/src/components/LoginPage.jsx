@@ -1,3 +1,4 @@
+
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
@@ -18,7 +19,7 @@ function LoginPage() {
     const login = () => {
         console.log(Username)
         console.log(Password)
-        const apicall = axios.get(`https://student-management-system-be.vercel.app/login?UserName=${Username}&password=${Password}`)
+        const apicall = axios.get(process.env.REACT_APP_BASE_URL +`/login?UserName=${Username}&password=${Password}`)
         apicall.then((data) => {
             console.log("login " + data.data);
             if (data.data === true) {

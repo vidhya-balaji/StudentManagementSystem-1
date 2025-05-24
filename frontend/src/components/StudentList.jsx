@@ -1,3 +1,4 @@
+
 import { AppBar, Box, Button, Container, Icon, Menu, MenuItem, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Toolbar, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -13,24 +14,32 @@ function StudentList(props) {
   const listOfStudents = props.listOfStudents;
   const setListOfStudents = props.setListOfStudents;
   const [openPopUp, setOpenPopUp] = useState(false);
+  const [search, setSearch] = useState();
   const delay = async (ms) => {
     return new Promise((resolve) =>
       setTimeout(resolve, ms));
   };
   function handleEdit(editRegNo) {
     console.log(editRegNo);
-    axios.post("https://student-management-system-be.vercel.app/edit", { editRegNo }).then((res) => {
+    axios.post(process.env.REACT_APP_BASE_URL +"/edit", { editRegNo }).then((res) => {
       console.log(res.data);
       if (res.data === true) {
         listOfStudents.map(students => {
           if (students.regno === editRegNo) {
-
             navigate('/edit', { state: { regno: editRegNo, name: students.name, age: students.age, address: students.address, course: students.course, CGPA: students.CGPA } })
           }
         })
       }
     }).catch((err) => { console.log("Registration failed :" + err) })
   };
+  function handleSearch(evt)
+  {
+    setSearch(evt.target.value);
+    console.log(search);
+    var list =listOfStudents.filter(item => item.regno.toString().includes(evt.target.value));
+    console.log(list);
+    setListOfStudents(list);
+  }
 
   async function handleDelete(deleteid) {
     var temp = listOfStudents.filter((data) => {
@@ -78,7 +87,7 @@ function StudentList(props) {
           sx={{
             justifyContent: "end",
           }}>
-          <TextField label="Search...." sx={{ width: '40%', margin: '20px' }} />
+          <TextField value={search} onChange={(evt)=>{handleSearch(evt)}} label="Search...." sx={{ width: '40%', margin: '20px' }} />
           <Button onClick={handleNewRecord} color="primary" variant="contained" sx={{ height: '50px', margin: '20px' }} endIcon={<AddIcon />}>Add</Button>
         </Stack>
         <Table sx={{ minWidth: 800 }} aria-label="simple table">

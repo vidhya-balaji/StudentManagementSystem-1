@@ -1,3 +1,4 @@
+
 import { Button, ButtonGroup, Container, Dialog, DialogContent, DialogTitle, Stack, TextField, Typography } from "@mui/material"
 import CancelIcon from '@mui/icons-material/Cancel';
 import { useNavigate } from "react-router-dom";
@@ -28,10 +29,12 @@ function Add(props) {
       }
     const handleAdd=()=>
     {
-        axios.post("https://student-management-system-be.vercel.app/add",{ regno: regno, name: name, age: age, course: course, address: address, CGPA: CGPA }).then(suc=>
+        axios.post(process.env.REACT_APP_BASE_URL +"/add",{ regno: regno, name: name, age: age, course: course, address: address, CGPA: CGPA }).then(suc=>
         {
-            if(suc){
-                toast.success("Record Added Successfully")
+            if(suc.data){
+                setOpenPopUp(false)
+                toast.error("Record Added Successfully");
+                 toast.dismiss();
             }
             else{
                 toast.error("Record not Added");

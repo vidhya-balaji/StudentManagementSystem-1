@@ -4,12 +4,12 @@ const mongoose = require("mongoose")
 const UserModel = require("./models/Users")
 const registermodel = require("./models/register")
 const studentModel = require("./models/studentlist")
-
+require('dotenv').config()
 const app = express();
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 app.use(express.json());
-mongoose.connect("mongodb+srv://vidhyabalajinina:vidhyabalaji@cluster0.6pxhhii.mongodb.net/StudentDatabase?retryWrites=true&w=majority&appName=Cluster0").then(() => console.log("Database connected successfully"))
+mongoose.connect(process.env.DBConnectionString).then(() => console.log("Database connected successfully"))
     .catch((e) => console.log("Database connection failed" + e))
 const userdata = [
     { email: 'vidhya@gmail.com', password: 'Pass1234' },
@@ -35,16 +35,17 @@ app.post('/register', async function (req, res) {
         }
         )
     } else {
+         console.log("user find : failed");
         res.send("User already exist")
     }
 })
 app.get("/login", async (req, res) => {
     const user = await UserModel.find({ email: req.query.UserName, password: req.query.password })
     if (user.length > 0) {
-        res.send(user)
+        res.send(true)
     }
     else {
-        res.send(user)
+        res.send(false)
     }
 
 })
